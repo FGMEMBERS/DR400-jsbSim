@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<PropertyList>
+
+  <path>engine.ac</path>
+  
+    
+ <animation>
+    <type>material</type>
+    <object-name>engine</object-name>
+    <object-name>fuelneedle</object-name>
+    <object-name>fueltempneedle</object-name>
+    <object-name>oatneedle</object-name>
+    <object-name>voltsneedle</object-name>
+    <emission>
+      <red>0.01</red>
+      <green>0.01</green>
+      <blue>0.01</blue>
+      <factor-prop>/instrumentation/ced/dimmer</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>engine</object-name>
+    <object-name>fuelneedle</object-name>
+    <object-name>fueltempneedle</object-name>
+    <object-name>oatneedle</object-name>
+    <object-name>voltsneedle</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red>   0.07 </red>
+      <green> 0.04 </green>
+      <blue>  0.04 </blue>
+      <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+  </animation>
+<animation>
+    <type>noshadow</type>
+    <object-name>glass</object-name>
+  </animation>
+
+ <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>Aircraft/DR400-jsbSim/Models/Effects/glass_shader.dds</texture>
+    <object-name>glass</object-name>
+    <condition>
+      <property>/sim/model/config/use-dds</property>
+    </condition>
+  </animation>
+
+ <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>Aircraft/DR400-jsbSim/Models/Effects/glass_shader.png</texture>
+    <object-name>glass</object-name>
+    <condition>
+      <not><property>/sim/model/config/use-dds</property></not>
+    </condition>
+  </animation>
+   <animation>
+    <type>rotate</type>
+    <object-name>oatneedle</object-name>
+    <property>/environment/temperature-degc</property>
+    <factor>-1</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+        <center>
+            <x-m>0.11423</x-m>
+            <y-m>-0.2399</y-m>
+            <z-m>-0.03271</z-m>
+        </center>
+  </animation>
+ <animation>
+    <type>rotate</type>
+    <object-name>fuelneedle</object-name>
+    <property>/consumables/fuel/tank[0]/level-norm</property>
+    <factor>-77.58</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+        <center>
+            <x-m>0.11423</x-m>
+            <y-m>-0.2399</y-m>
+            <z-m>-0.0089</z-m>
+        </center>
+  </animation>
+  
+   <animation>
+    <type>rotate</type>
+    <object-name>voltsneedle</object-name>
+    <property>/systems/electrical/volts</property>
+    <factor>2.5</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+        <center>
+            <x-m>0.11423</x-m>
+            <y-m>-0.22766</y-m>
+            <z-m>-0.02057</z-m>
+        </center>
+  </animation>
+    
+</PropertyList>

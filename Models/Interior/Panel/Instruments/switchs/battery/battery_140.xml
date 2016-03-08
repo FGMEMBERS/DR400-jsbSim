@@ -1,0 +1,55 @@
+
+<PropertyList>
+    <path>battery-140.ac</path>
+  <!--Battery switch animation for 140B-->
+   <animation>
+    <type>material</type>
+        <object-name>batteryswitch</object-name>
+
+    <condition>
+      <property>/sim/model/config/use-dds</property>
+    </condition>
+
+    <texture>on-off-R.dds</texture>
+  </animation>
+
+    <animation>
+        <object-name>batteryswitch</object-name>
+        <type>rotate</type>
+        <property>/controls/electric/battery-switch-pos</property>
+        <factor>30</factor>
+        <min-deg>0</min-deg>
+        <max-deg>35</max-deg>
+        <center><x-m>0.11918</x-m>
+            <z-m>-0.00435</z-m>
+        </center>
+        <axis>
+            <x> 0.0 </x>
+            <y>-1.0 </y>
+            <z> 0.0 </z>
+        </axis>
+    </animation>
+  
+    <animation>
+        <type>pick</type>
+        <object-name>batteryswitch</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/controls/electric/battery-switch</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>master-switch</tooltip-id>
+                <label>Electric master: %s</label>
+                <mapping>on-off</mapping>
+                <property>controls/electric/battery-switch</property>
+            </binding>
+        </hovered>
+    </animation>
+</PropertyList>

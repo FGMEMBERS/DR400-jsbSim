@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ########################################
+
+ # DR400-jsbSim by PAF team
+ # April 2012 : Modified by PAF team
+ # March 2016: Ported to a combined OAT/Volts/Clock (M803)
+ # http://equipe-flightgear.forumactif.com
+
+##########################################-->
+<PropertyList>
+
+  <path>m803.ac</path>
+  
+    
+ <animation>
+    <type>material</type>
+    <object-name>displays.on</object-name>
+    <emission>
+      <red>1</red>
+      <green>0.5</green>
+      <blue>0.4</blue>
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+    </emission>
+  </animation>
+<animation>
+<type>select</type>
+   <object-name>displays.off</object-name>
+<condition>
+      <not><property>/controls/electric/battery-switch</property></not>
+</condition>
+</animation>
+<!--Buttons-->
+  <animation>
+    <type>pick</type>
+    <object-name>oatvolts</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>/instrumentation/m803/mode</property>
+	<value>0</value>
+	<value>1</value>
+	<value>2</value>
+      </binding>
+    </action>
+  </animation>
+<animation>
+    <type>pick</type>
+    <object-name>select</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>/instrumentation/m803/clock-mode</property>
+	<value>0</value>
+	<value>1</value>
+	<value>2</value>
+	<value>3</value>
+      </binding>
+    </action>
+  </animation>
+<!--To come-->
+<!--
+<animation>
+    <type>pick</type>
+    <object-name>control</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>/instrumentation/m803/clock-mode</property>
+	<value>0</value>
+	<value>1</value>
+	<value>2</value>
+      </binding>
+    </action>
+  </animation>-->
+
+  <animation>
+    <type>material</type>
+    <object-name>volts.10</object-name>
+    <object-name>volts.1</object-name>
+    <object-name>volts.01</object-name>
+    <object-name>EFC</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red>   0.07 </red>
+      <green> 0.04 </green>
+      <blue>  0.04 </blue>
+      <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+  </animation>
+<!--Volts part-->
+<animation>
+<type>select</type>
+   <object-name>volts.10</object-name>
+   <object-name>volts.1</object-name>
+   <object-name>volts.01</object-name>
+   <object-name>point</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/mode</property>
+<value>0</value>
+</equals>
+</condition>
+</animation>
+
+ <animation>
+    <type>textranslate</type>
+    <object-name>volts.10</object-name>
+    <property>/systems/electrical/volts</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+    <object-name>volts.1</object-name>
+    <property>/systems/electrical/volts</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+    <object-name>volts.01</object-name>
+    <property>/systems/electrical/volts</property>
+    <step>0.1</step>
+    <factor>1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+<!--Fahrenheit part-->
+<animation>
+<type>select</type>
+   <object-name>fahrenheit.10</object-name>
+   <object-name>fahrenheit.1</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/mode</property>
+<value>1</value>
+</equals>
+</condition>
+</animation>
+
+ <animation>
+    <type>textranslate</type>
+    <object-name>fahrenheit.10</object-name>
+    <property>/environment/temperature-degf</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+    <object-name>fahrenheit.1</object-name>
+    <property>/environment/temperature-degf</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+<!--Celcius part-->
+<animation>
+<type>select</type>
+   <object-name>celcius.10</object-name>
+   <object-name>celcius.1</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/mode</property>
+<value>2</value>
+</equals>
+</condition>
+</animation>
+
+ <animation>
+    <type>textranslate</type>
+    <object-name>celcius.10</object-name>
+    <property>/environment/temperature-degc</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+    <object-name>celcius.1</object-name>
+    <property>/environment/temperature-degc</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>EFC</object-name>
+    <property>/instrumentation/m803/mode</property>
+    <step>1</step>
+    <factor>0.33</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+<!--CLOCK PART-->
+<!--UT part-->
+<animation>
+<type>select</type>
+   <object-name>UTind</object-name>
+   <object-name>UTtime.10h</object-name>
+   <object-name>UTtime.1h</object-name>
+   <object-name>UTtime.10m</object-name>
+   <object-name>UTtime.1m</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/clock-mode</property>
+<value>0</value>
+</equals>
+</condition>
+</animation>
+
+ <animation>
+    <type>textranslate</type>
+   <object-name>UTtime.10h</object-name>
+    <property>/sim/time/utc/hour</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+   <object-name>UTtime.1h</object-name>
+    <property>/sim/time/utc/hour</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+   <object-name>UTtime.10m</object-name>
+    <property>/sim/time/utc/minute</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+   <object-name>UTtime.1m</object-name>
+    <property>/sim/time/utc/minute</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+<!--LT part-->
+<animation>
+<type>select</type>
+   <object-name>LTind</object-name>
+   <object-name>LTtime.10h</object-name>
+   <object-name>LTtime.1h</object-name>
+   <object-name>LTtime.10m</object-name>
+   <object-name>LTtime.1m</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/clock-mode</property>
+<value>1</value>
+</equals>
+</condition>
+</animation>
+
+ <animation>
+    <type>textranslate</type>
+   <object-name>LTtime.10h</object-name>
+    <property>/sim/time/local/hours</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+   <object-name>LTtime.1h</object-name>
+    <property>/sim/time/local/hours</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+   <object-name>LTtime.10m</object-name>
+    <property>/sim/time/utc/minute</property>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+ <animation>
+    <type>textranslate</type>
+   <object-name>LTtime.1m</object-name>
+    <property>/sim/time/utc/minute</property>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+<!--FT part-->
+<animation>
+<type>select</type>
+   <object-name>FTind</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/clock-mode</property>
+<value>2</value>
+</equals>
+</condition>
+</animation>
+<!--ET part-->
+<animation>
+<type>select</type>
+   <object-name>ETind</object-name>
+<condition>
+     <equals>
+        <property>/instrumentation/m803/clock-mode</property>
+<value>3</value>
+</equals>
+</condition>
+</animation>    
+</PropertyList>

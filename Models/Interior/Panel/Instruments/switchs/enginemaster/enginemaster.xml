@@ -1,0 +1,45 @@
+
+<PropertyList>
+    <path>enginemaster.ac</path>
+
+
+    <animation>
+        <object-name>enginemaster</object-name>
+        <type>rotate</type>
+        <property>/controls/engines/engine/master-alt-pos</property>
+        <factor>90</factor>
+        <min-deg>0</min-deg>
+        <max-deg>90</max-deg>
+        <center><x-m>0.11386</x-m>
+            <z-m>-0.00369</z-m>
+        </center>
+        <axis>
+            <x> 0.0 </x>
+            <y>-1.0 </y>
+            <z> 0.0 </z>
+        </axis>
+    </animation>
+  
+    <animation>
+        <type>pick</type>
+        <object-name>enginemaster</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+        <property>/controls/engines/engine/master-alt</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>master-switch</tooltip-id>
+                <label>Engine master: %s</label>
+                <mapping>on-off</mapping>
+        <property>/controls/engines/engine/master-alt</property>
+            </binding>
+        </hovered>
+    </animation>
+</PropertyList>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- (c) 2015, wlbragg. http://forum.flightgear.org/viewtopic.php?f=4&t=25157&start=75#p232085
+Under the GPL. Used by shadows under ALS -->
+
+<PropertyList>
+
+  <!-- ================================================================== -->
+    <!-- Securing aircraft                                                  -->
+    <!-- ================================================================== -->
+
+    <logic>
+        <name>Parking Brake And Chock</name>
+        <input>
+            <or>
+                <!-- The actual parking brake controlled by the pilot -->
+                <property>/sim/model/c172p/brake-parking</property>
+
+                <property>/sim/model/c172p/securing/chock-visible</property>
+
+                <!-- When changing the bushkit, hold position so that new
+                     initial length of tiedowns can be safely computed.
+                -->
+                <property>/fdm/jsbsim/damage/repairing</property>
+
+                <!-- A broken gear operates as a parking brake -->
+                <property>/fdm/jsbsim/gear/unit[1]/broken</property>
+                <property>/fdm/jsbsim/gear/unit[2]/broken</property>
+            </or>
+        </input>
+        <output>
+            <property>/controls/gear/brake-parking</property>
+        </output>
+    </logic>
+
+    <!-- Logic for chocks -->
+    <logic>
+        <name>Chock Can Have</name>
+        <input>
+            <and>
+                <less-than>
+                    <property>/fdm/jsbsim/bushkit</property>
+                    <value>3</value>
+                </less-than>
+                <property>/sim/model/c172p/securing/allow-securing-aircraft</property>
+                <less-than>
+                    <property>velocities/groundspeed-kt</property>
+                    <value>1.0</value>
+                </less-than>
+            </and>
+        </input>
+        <output>
+            <property>/sim/model/c172p/securing/chock-can-have</property>
+        </output>
+    </logic>
+
+    <logic>
+        <name>Chock Visible</name>
+        <input>
+            <and>
+                <property>/sim/model/c172p/securing/chock</property>
+                <property>/sim/model/c172p/securing/chock-can-have</property>
+            </and>
+        </input>
+        <output>
+            <property>/sim/model/c172p/securing/chock-visible</property>
+        </output>
+    </logic>
+
+    <logic>
+        <name>Chock Addable</name>
+        <input>
+            <and>
+                <not>
+                    <property>/sim/model/c172p/securing/chock</property>
+                </not>
+                <property>/sim/model/c172p/securing/chock-can-have</property>
+            </and>
+        </input>
+        <output>
+            <property>/sim/model/c172p/securing/chock-addable</property>
+        </output>
+    </logic>
+
+</PropertyList>

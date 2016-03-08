@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+
+  <!--
+  Bendix/King KX155/165 COMM/NAV radio
+  Use this instrument as COMM1/NAV1 radio
+
+  Created by Torsten Dreyer, October 2008
+
+  You might want to use the following code in your aircraft's nasal
+  init function to keep the settings of the radio persistent between
+  flightgear sessions
+
+  aircraft.data.add(
+    "instrumentation/comm[0]/volume",
+    "instrumentation/comm[0]/frequencies/selected-mhz",
+    "instrumentation/comm[0]/frequencies/standby-mhz",
+    "instrumentation/comm[0]/test-btn",
+    "instrumentation/nav[0]/audio-btn",
+    "instrumentation/nav[0]/power-btn",
+    "instrumentation/nav[0]/frequencies/selected-mhz",
+    "instrumentation/nav[0]/frequencies/standby-mhz",
+  );
+
+modified for Garmin GNC255A by D-ECHO, March 2016 
+  -->
+
+  <params>
+    <comm-serviceable>instrumentation/comm[0]/serviceable</comm-serviceable>
+    <nav-serviceable>instrumentation/nav[0]/serviceable</nav-serviceable>
+    <power-nav>instrumentation/nav[0]/power-btn</power-nav>
+    <power-comm>instrumentation/comm[0]/power-btn</power-comm>
+
+    <comm-frq-swp>instrumentation/comm[0]/frq-swap-btn</comm-frq-swp>
+    <comm-frq-selected>instrumentation/comm[0]/frequencies/selected-mhz</comm-frq-selected>
+    <comm-frq-standby>instrumentation/comm[0]/frequencies/standby-mhz</comm-frq-standby>
+    <comm-volume>instrumentation/comm[0]/volume</comm-volume>
+    <comm-test>instrumentation/comm[0]/test-btn</comm-test>
+
+    <nav-frq-swp>instrumentation/nav[0]/frq-swap-btn</nav-frq-swp>
+    <nav-frq-selected>instrumentation/nav[0]/frequencies/selected-mhz</nav-frq-selected>
+    <nav-frq-standby>instrumentation/nav[0]/frequencies/standby-mhz</nav-frq-standby>
+    <nav-volume>instrumentation/nav[0]/volume</nav-volume>
+    <nav-audio>instrumentation/nav[0]/audio-btn</nav-audio>
+
+    <dimming>instrumentation/comm[0]/dimming-norm</dimming>
+    <red>1</red>
+    <green>1</green>
+    <blue>1</blue>
+  </params>
+
+  <path>gnc255a.ac</path>
+<!--To adjust later-->
+  <animation>
+    <object-name>GNC255A</object-name>
+    <object-name>tunekHz</object-name>
+    <object-name>tunemHz</object-name>
+    <object-name>offdisplay</object-name>
+    <object-name>mon</object-name>
+    <object-name>com</object-name>
+    <object-name>nav</object-name>
+    <object-name>comvol</object-name>
+    <object-name>navvol</object-name>
+    <object-name>c/n</object-name>
+    <object-name>obs</object-name>
+    <object-name>swap</object-name>
+    <object-name>ent</object-name>
+    <object-name>clr</object-name>
+    <object-name>func</object-name>
+    <object-name>t/f</object-name>
+    <object-name>comm.act.100</object-name>
+    <object-name>comm.act.10</object-name>
+    <object-name>comm.act.1</object-name>
+    <object-name>comm.act.01</object-name>
+    <object-name>comm.act.001</object-name>
+    <object-name>comm.act.0001</object-name>
+    <object-name>nav.act.100</object-name>
+    <object-name>nav.act.10</object-name>
+    <object-name>nav.act.1</object-name>
+    <object-name>nav.act.01</object-name>
+    <object-name>nav.act.001</object-name>
+    <object-name>nav.act.0001</object-name>
+    <object-name>comm.sby.100</object-name>
+    <object-name>comm.sby.10</object-name>
+    <object-name>comm.sby.1</object-name>
+    <object-name>comm.sby.01</object-name>
+    <object-name>comm.sby.001</object-name>
+    <object-name>comm.sby.0001</object-name>
+    <object-name>nav.sby.100</object-name>
+    <object-name>nav.sby.10</object-name>
+    <object-name>nav.sby.1</object-name>
+    <object-name>nav.sby.01</object-name>
+    <object-name>nav.sby.001</object-name>
+    <object-name>nav.sby.0001</object-name>
+  </animation>
+
+
+
+  <animation>
+    <type>material</type>
+    <object-name>GNC255A</object-name>
+    <object-name>tunekHz</object-name>
+    <object-name>tunemHz</object-name>
+    <object-name>offdisplay</object-name>
+    <object-name>mon</object-name>
+    <object-name>com</object-name>
+    <object-name>nav</object-name>
+    <object-name>comvol</object-name>
+    <object-name>navvol</object-name>
+    <object-name>c/n</object-name>
+    <object-name>obs</object-name>
+    <object-name>swap</object-name>
+    <object-name>ent</object-name>
+    <object-name>clr</object-name>
+    <object-name>func</object-name>
+    <object-name>t/f</object-name>
+    <object-name>comm.act.100</object-name>
+    <object-name>comm.act.10</object-name>
+    <object-name>comm.act.1</object-name>
+    <object-name>comm.act.01</object-name>
+    <object-name>comm.act.001</object-name>
+    <object-name>comm.act.0001</object-name>
+    <object-name>nav.act.100</object-name>
+    <object-name>nav.act.10</object-name>
+    <object-name>nav.act.1</object-name>
+    <object-name>nav.act.01</object-name>
+    <object-name>nav.act.001</object-name>
+    <object-name>nav.act.0001</object-name>
+    <object-name>comm.sby.100</object-name>
+    <object-name>comm.sby.10</object-name>
+    <object-name>comm.sby.1</object-name>
+    <object-name>comm.sby.01</object-name>
+    <object-name>comm.sby.001</object-name>
+    <object-name>comm.sby.0001</object-name>
+    <object-name>nav.sby.100</object-name>
+    <object-name>nav.sby.10</object-name>
+    <object-name>nav.sby.1</object-name>
+    <object-name>nav.sby.01</object-name>
+    <object-name>nav.sby.001</object-name>
+    <object-name>nav.sby.0001</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red alias="../../../params/red"/>
+      <green alias="../../../params/green"/>
+      <blue alias="../../../params/blue"/>
+      <factor-prop alias="../../../params/dimming"/>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>comdisplay</object-name>
+    <object-name>com</object-name>
+    <object-name>nav</object-name>
+    <object-name>act.point</object-name>
+    <object-name>act.point.001</object-name>
+    <object-name>comm.act.100</object-name>
+    <object-name>comm.act.10</object-name>
+    <object-name>comm.act.1</object-name>
+    <object-name>comm.act.01</object-name>
+    <object-name>comm.act.001</object-name>
+    <object-name>comm.act.0001</object-name>
+    <object-name>nav.act.100</object-name>
+    <object-name>nav.act.10</object-name>
+    <object-name>nav.act.1</object-name>
+    <object-name>nav.act.01</object-name>
+    <object-name>nav.act.001</object-name>
+    <object-name>nav.act.0001</object-name>
+    <object-name>comm.sby.100</object-name>
+    <object-name>comm.sby.10</object-name>
+    <object-name>comm.sby.1</object-name>
+    <object-name>comm.sby.01</object-name>
+    <object-name>comm.sby.001</object-name>
+    <object-name>comm.sby.0001</object-name>
+    <object-name>nav.sby.100</object-name>
+    <object-name>nav.sby.10</object-name>
+    <object-name>nav.sby.1</object-name>
+    <object-name>nav.sby.01</object-name>
+    <object-name>nav.sby.001</object-name>
+    <object-name>nav.sby.0001</object-name>
+    <condition>
+      <and>
+        <property alias="../../../../params/comm-serviceable"/>
+    <property>/systems/electrical/outputs/master-avionics</property>
+<greater-than>
+    <property>/systems/electrical/volts</property>
+<value>20</value>
+</greater-than>
+      </and>
+    </condition>
+  </animation>
+
+<!--Comm/Nav Button-->
+
+  <animation>
+    <type>pick</type>
+    <object-name>c/n</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/instrumentation/gnc255a/comm-mode</property>
+      </binding>
+</action>
+</animation>
+<!--Select displays-->
+<animation>
+<type>select</type>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+  <object-name>com</object-name>
+</animation>
+
+<!--SWAP button-->
+  <animation>
+    <type>pick</type>
+    <object-name>swap</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+<!--if COMM mode-->
+      <binding>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+        <command>property-assign</command>
+        <property alias="../../../../params/comm-frq-swp"/>
+        <value type="int">1</value>
+      </binding>
+      <binding>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+        <command>property-swap</command>
+        <property alias="../../../../params/comm-frq-selected"/>
+        <property alias="../../../../params/comm-frq-standby"/>
+      </binding>
+      <mod-up>
+        <binding>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+          <command>property-assign</command>
+          <property alias="../../../../../params/comm-frq-swp"/>
+          <value type="int">0</value>
+        </binding>
+      </mod-up>
+<!--If NAV mode-->
+      <binding>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+        <command>property-swap</command>
+        <property alias="../../../../params/nav-frq-selected"/>
+        <property alias="../../../../params/nav-frq-standby"/>
+      </binding>
+    </action>
+  </animation>
+  <animation>
+    <type>translate</type>
+    <object-name>swap</object-name>
+    <property alias="../../params/comm-frq-swp"/>
+    <factor>-0.002</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+<!--Communication frequencies are only available in COMM mode-->
+<animation>
+<type>select</type>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+  <object-name>comm.act.100</object-name>
+  <object-name>comm.act.10</object-name>
+  <object-name>comm.act.1</object-name>
+  <object-name>comm.act.01</object-name>
+  <object-name>comm.act.001</object-name>
+  <object-name>comm.act.0001</object-name>
+</animation>
+<!--Active frequency - if COMM mode-->
+  <animation>
+  <type>textranslate</type>
+  <object-name>comm.act.100</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-selected"/>
+    <step>100</step>
+    <factor>0.001</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.act.10</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-selected"/>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.act.1</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-selected"/>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.act.01</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-selected"/>
+    <step>0.1</step>
+    <factor>1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.act.001</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-selected"/>
+    <step>0.01</step>
+    <factor>10</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.act.0001</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-selected"/>
+    <step>0.001</step>
+    <factor>100</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+<!--Active frequency - if NAV mode-->
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.act.100</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-selected"/>
+    <step>100</step>
+    <factor>0.001</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.act.10</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-selected"/>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.act.1</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-selected"/>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.act.01</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-selected"/>
+    <step>0.1</step>
+    <factor>1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.act.001</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-selected"/>
+    <step>0.01</step>
+    <factor>10</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.act.0001</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-selected"/>
+    <step>0.001</step>
+    <factor>100</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+<!--Communication frequencies are only available in COMM mode-->
+<animation>
+<type>select</type>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+  <object-name>comm.sby.100</object-name>
+  <object-name>comm.sby.10</object-name>
+  <object-name>comm.sby.1</object-name>
+  <object-name>comm.sby.01</object-name>
+  <object-name>comm.sby.001</object-name>
+  <object-name>comm.sby.0001</object-name>
+</animation>
+<!--Standby frequency - if COMM mode-->
+  <animation>
+  <type>textranslate</type>
+  <object-name>comm.sby.100</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-standby"/>
+    <step>100</step>
+    <factor>0.001</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.sby.10</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-standby"/>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.sby.1</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-standby"/>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.sby.01</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-standby"/>
+    <step>0.1</step>
+    <factor>1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.sby.001</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-standby"/>
+    <step>0.01</step>
+    <factor>10</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>comm.sby.0001</object-name>
+<condition><property>/instrumentation/gnc255a/comm-mode</property></condition>
+    <property alias="../../params/comm-frq-standby"/>
+    <step>0.001</step>
+    <factor>100</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+<!--Standby frequency - if NAV mode-->
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.sby.100</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-standby"/>
+    <step>100</step>
+    <factor>0.001</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.sby.10</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-standby"/>
+    <step>10</step>
+    <factor>0.01</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.sby.1</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-standby"/>
+    <step>1</step>
+    <factor>0.1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.sby.01</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-standby"/>
+    <step>0.1</step>
+    <factor>1</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.sby.001</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-standby"/>
+    <step>0.01</step>
+    <factor>10</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>textranslate</type>
+    <object-name>nav.sby.0001</object-name>
+<condition><not><property>/instrumentation/gnc255a/comm-mode</property></not></condition>
+    <property alias="../../params/nav-frq-standby"/>
+    <step>0.001</step>
+    <factor>100</factor>
+    <bias>0.0001</bias>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+
+  <!-- actions -->
+
+  <!-- Comm part -->
+
+  <animation>
+    <type>knob</type>
+    <object-name>comvol</object-name>
+    <property alias="../../params/comm-volume"/>
+    <factor>-65</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.01473</x-m>
+      <y-m>-0.06498</y-m>
+      <z-m>0.00962</z-m>
+    </center>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-volume"/>
+        <factor>-0.1</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>comm-volume</tooltip-id>
+        <label>Volume: %3d%%</label>
+        <property alias="../../../../params/comm-volume"/>
+        <mapping>percent</mapping>
+      </binding>
+    </hovered>
+  </animation>
+
+<animation>
+<type>rotate</type>
+    <object-name>tunekHz</object-name>
+    <property alias="../../params/comm-frq-standby"/>
+    <factor>-360</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.01312</x-m>
+      <y-m>0.07017</y-m>
+      <z-m>-0.01331</z-m>
+    </center>
+</animation>
+  <animation>
+    <type>knob</type>
+    <object-name>tunekHz</object-name>
+    <property alias="../../params/nav-frq-standby"/>
+    <property alias="../../params/comm-frq-standby"/>
+    <factor>-360</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.01312</x-m>
+      <y-m>0.07017</y-m>
+      <z-m>-0.01331</z-m>
+    </center>
+    <action>
+      <binding>
+        <condition>
+	<property>/instrumentation/gnc255a/comm-mode</property>
+          <property alias="../../../../../params/power-comm"/>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-frq-standby"/>
+        <factor>0.025</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.025</resolution>
+        <wrap>true</wrap>
+        <mask>decimal</mask>
+      </binding>
+      <binding>
+        <condition>
+	<not><property>/instrumentation/gnc255a/comm-mode</property></not>
+          <property alias="../../../../../params/power-comm"/>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-frq-standby"/>
+        <factor>0.025</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <resolution>0.025</resolution>
+        <wrap>true</wrap>
+        <mask>decimal</mask>
+      </binding>
+    </action>
+  </animation>
+<animation>
+<type>rotate</type>
+    <object-name>tunemHz</object-name>
+    <property alias="../../params/comm-frq-standby"/>
+    <factor>-7</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.01312</x-m>
+      <y-m>0.07017</y-m>
+      <z-m>-0.01331</z-m>
+    </center>
+</animation>
+ <animation>
+    <type>knob</type>
+    <object-name>tunemHz</object-name>
+    <property alias="../../params/nav-frq-standby"/>
+    <factor>-7</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.01312</x-m>
+      <y-m>0.07017</y-m>
+      <z-m>-0.01331</z-m>
+    </center>
+    <action>
+      <binding>
+        <condition>
+	<property>/instrumentation/gnc255a/comm-mode</property>
+          <property alias="../../../../../params/power-comm"/>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-frq-standby"/>
+        <factor>1</factor>
+        <min>118.0</min>
+        <max>137.0</max>
+        <wrap>true</wrap>
+      </binding>
+      <binding>
+        <condition>
+	<not><property>/instrumentation/gnc255a/comm-mode</property></not>
+          <property alias="../../../../../params/power-comm"/>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-frq-standby"/>
+        <factor>1</factor>
+        <min>108.0</min>
+        <max>118.0</max>
+        <wrap>true</wrap>
+      </binding>
+    </action>
+  </animation>
+
+
+  <!-- Nav part -->
+
+  <animation>
+    <type>knob</type>
+    <object-name>navvol</object-name>
+    <property alias="../../params/nav-volume"/>
+    <factor>-65</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0188946</x-m>
+      <y-m>-0.06502</y-m>
+      <z-m>-0.0129</z-m>
+    </center>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-volume"/>
+        <factor>-0.1</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>nav-volume</tooltip-id>
+        <label>Volume: %3d%%</label>
+        <property alias="../../../../params/nav-volume"/>
+        <mapping>percent</mapping>
+      </binding>
+    </hovered>
+  </animation>
+  <!-- TEXT OSG -->
+
+  <text>
+    <name>textosg</name>
+    <type type="string">literal</type>
+    <text type="string">COMM 1 / NAV 1</text>
+    <draw-text type="bool">true</draw-text>
+    <font>Helvetica.txf</font>
+    <character-size type="double">0.014</character-size>
+    <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+    <axis-alignment>yz-plane</axis-alignment>
+    <max-height>0.06</max-height>
+    <max-width>0.15</max-width>
+    <font-resolution>
+      <width type="int">64</width>
+      <height type="int">64</height>
+    </font-resolution>
+    <alignment>center-center</alignment>
+    <offsets>
+      <x-m>  0.015 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.015 </z-m>
+    </offsets>
+  </text>
+
+  <animation>
+    <type>material</type>
+    <object-name>textosg</object-name>
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  0.0 </blue>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>textosg</object-name>
+    <condition>
+      <property>sim/panel-hotspots</property>
+    </condition>
+  </animation>
+
+
+</PropertyList>

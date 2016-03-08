@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ########################################
+
+ # DR400-jsbSim by PAF team
+ # April 2013 : Modified by PAF team
+ # http://equipe-flightgear.forumactif.com
+
+##########################################-->
+
+<PropertyList include="dr400-jsbsim-base.xml">
+
+  <sim>
+    <description>Robin DR 400-140B Ecoflyer 2 (JSBSim, Rembrandt)</description>
+    <author>PAF team, Guillaume CHAUVAT, Daniel DUBREUIL (FDM JSBSim), Laurent HAYVEL, Christian THIRIOT (2012-2013, textures, audio,3D), Emmanuel BARANGER (3D)</author>
+
+    <aero archive="y">dr400-140-jsbsim</aero>
+
+    <sound>
+      <path archive="y">Aircraft/DR400-jsbSim/Sounds/dr400-140-jsbsim-sound.xml</path>    
+    </sound>
+    
+    <startup>
+      <splash-texture>Aircraft/DR400-jsbSim/dr400-140-jsbsim-splash.png</splash-texture>
+    </startup>
+
+    <model>
+      <path archive="y">Aircraft/DR400-jsbSim/Models/dr400-140-jsbsim.xml</path>
+  <pushback>
+   <kp type="double">0.9</kp>
+   <ki type="double">0.5</ki>
+   <kd type="double">0</kd>
+   <position-norm type="double">0</position-norm>
+  </pushback>
+    </model>
+
+    <help>
+      <title>Robin DR400 140B Ecoflyer</title>
+    </help>
+  </sim>
+<instrumentation>
+<!--Garmin GNC255A COMM/NAV-->
+<gnc255a><comm-mode type="bool">1</comm-mode></gnc255a>
+<!--OAT/VOLTS/CLOCK/STOPWATCH-->
+<m803>
+   <clock-mode>0</clock-mode>
+   <mode>0</mode>
+</m803>
+  <!--TCAS--> 
+<efis>
+<inputs>
+<range-nm>10</range-nm>
+<tfc>1</tfc>
+<nd-centered>1</nd-centered></inputs>
+</efis>
+</instrumentation>
+  <consumables>
+    <fuel>
+      <tank n="0">
+        <level-gal_us>25.8</level-gal_us>
+      </tank>
+    </fuel>
+  </consumables>
+
+  <nasal>
+	<trx-2000>
+	<file>Aircraft/DR400-jsbSim/Models/Interior/Panel/Instruments/TRX-2000/TRX-2000.nas</file>
+</trx-2000>
+    <dr400>
+      <file>Aircraft/DR400-jsbSim/Nasal/dr400-140.nas</file>
+    </dr400>
+  </nasal>
+
+</PropertyList>
+

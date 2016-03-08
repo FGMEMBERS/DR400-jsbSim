@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ########################################
+
+ # DR400-jsbSim by PAF team
+ # April 2012 : Modified by PAF team
+ # http://equipe-flightgear.forumactif.com
+
+##########################################-->
+
+<PropertyList>
+<path>mags-140.ac</path>
+ <animation>
+   <object-name>starter1</object-name>
+   <object-name>key</object-name>
+ </animation>
+
+  <animation>
+    <type>material</type>
+   <object-name>starter1</object-name>
+   <object-name>key</object-name>
+
+    <condition>
+      <property>/sim/model/config/use-dds</property>
+    </condition>
+
+    <texture>mag_switch.dds</texture>
+  </animation>
+
+ <animation>
+   <type>knob</type>
+   <object-name>starter1</object-name>
+   <object-name>key</object-name>
+   <visible>true</visible>
+   <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>/controls/engines/engine/magnetos</property>
+       <factor>3</factor>
+       <min>0</min>
+       <max>3</max>
+     </binding>
+   </action>
+   <hovered>
+     <binding>
+       <command>set-tooltip</command>
+       <tooltip-id>magneto-switch</tooltip-id>
+       <label>Magnetos: %s</label>
+       <property>controls/engines/engine/magnetos</property>
+       <mapping>nasal</mapping>
+       <script>
+         var m = getprop('controls/engines/engine/magnetos');
+         if (m == 1) return 'RIGHT';
+         if (m == 2) return 'LEFT';
+         if (m == 3) return 'BOTH';
+         return 'OFF';
+       </script>
+     </binding>
+   </hovered>
+ </animation>
+
+
+ <animation>
+   <type>pick</type>
+   <object-name>start</object-name>
+   <visible>false</visible>
+   <action>
+     <button>0</button>
+     <binding>
+       <command>property-assign</command>
+       <property>/controls/engines/engine/starter_cmd</property>
+       <value>1</value>
+     </binding>
+     <mod-up>
+       <binding>
+         <command>property-assign</command>
+         <property>/controls/engines/engine/starter_cmd</property>
+         <value>0</value>
+       </binding>
+     </mod-up>
+   </action>
+ </animation>
+
+ <!--   key animations  -->   
+ <animation>
+  <type>rotate</type>
+  <object-name>starter1</object-name>
+  <object-name>key</object-name>
+  <property>/controls/engines/engine/magnetos-pos</property>
+  <factor>12</factor>
+  <center>
+   <x-m>0.11722</x-m>
+   <y-m>-0.31202</y-m>
+   <z-m>-0.05527</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+   
+ <animation>
+  <type>rotate</type>
+  <object-name>starter1</object-name>
+  <object-name>key</object-name>
+  <property>/controls/engines/engine/starter_cmd-pos</property>
+  <factor>150</factor>
+  <center>
+   <x-m>0.11722</x-m>
+   <y-m>-0.31202</y-m>
+   <z-m>-0.05527</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+</PropertyList>
+
+

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ########################################
+
+ # DR400-jsbSim by PAF team
+ # April 2012 : Modified by PAF team
+ # http://equipe-flightgear.forumactif.com
+
+##########################################-->
+
+<PropertyList>
+
+  <path>TRX-2000.ac</path>
+
+  <animation>
+    <object-name>display</object-name>
+    <object-name>TRX2000</object-name>
+    <object-name>knob1</object-name>
+    <object-name>knob2</object-name>
+    <object-name>outercircle</object-name>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>display</object-name>
+    <object-name>TRX2000</object-name>
+    <object-name>knob1</object-name>
+    <object-name>knob2</object-name>
+    <object-name>outercircle</object-name>
+    <condition>
+      <not><property>sim/rendering/rembrandt/enabled</property></not>
+    </condition>
+    <emission>
+      <red>   0.07 </red>
+      <green> 0.04 </green>
+      <blue>  0.04 </blue>
+      <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+  </animation>
+<!--On/Off-->
+<animation>
+   <type>select</type>
+   <object-name>display.off</object-name><condition><not>
+      		  <property>/instrumentation/trx-2000/on</property></not></condition>
+ </animation>
+<animation>
+   <type>pick</type>
+   <object-name>knob2</object-name>
+   <visible>true</visible>
+	 <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+		<binding>
+      		  <command>property-toggle</command>
+      		  <property>/instrumentation/trx-2000/on</property>
+     		</binding>
+		<binding>
+      		  <command>property-toggle</command>
+      		  <property>/instrumentation/trx-2000/on-btn</property>
+     		</binding>
+	<mod-up>
+		<binding>
+      		  <command>property-toggle</command>
+      		  <property>/instrumentation/trx-2000/on-btn</property>
+     		</binding>
+</mod-up>
+  	 </action>
+ </animation>
+<animation>
+   <type>translate</type>
+   <object-name>knob2</object-name>
+      		  <property>/instrumentation/trx-2000/on-btn</property>
+<factor>-0.001</factor>
+<axis><x>1</x></axis>
+ </animation>
+
+<animation>
+   <type>knob</type>
+   <object-name>knob1</object-name>
+       <property>/instrumentation/efis/inputs/range-nm</property>
+<center><y-m>0.00546</y-m>
+<z-m>0.09077</z-m></center>
+<axis><x>1</x></axis>
+   <visible>true</visible>
+   
+   <action>
+
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/efis/inputs/range-nm</property>
+       <factor>1</factor>
+       <min>1</min>
+       <max>100</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-setting</tooltip-id>
+      <label>Range: %5.2f</label>
+       <property>/instrumentation/efis/inputs/range-nm</property>
+   </binding>
+   </hovered>
+   
+  </animation>
+
+</PropertyList>
+

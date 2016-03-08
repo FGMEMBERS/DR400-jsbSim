@@ -1,0 +1,58 @@
+
+<PropertyList>
+    <path>on-off.ac</path>
+   <animation>
+    <type>material</type>
+        <object-name>on-off</object-name>
+
+    <condition>
+      <property>/sim/model/config/use-dds</property>
+    </condition>
+
+    <texture>on-off-R.dds</texture>
+  </animation>
+
+    <animation>
+        <object-name>on-off</object-name>
+        <type>rotate</type>
+    <property>/systems/electrical/outputs/master-avionics</property>
+        <factor>30</factor>
+        <min-deg>0</min-deg>
+        <max-deg>35</max-deg>
+        <center><x-m>0.0</x-m>
+            <z-m>-0.0</z-m>
+        </center>
+        <axis>
+            <x> 0.0 </x>
+            <y>-1.0 </y>
+            <z> 0.0 </z>
+        </axis>
+    </animation>
+  
+    <animation>
+        <type>pick</type>
+        <object-name>on-off</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+    <property>/systems/electrical/outputs/master-avionics</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+    <property>/instrumentation/comm/power-btn</property>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>master-switch</tooltip-id>
+                <label>Avionics master: %s</label>
+                <mapping>on-off</mapping>
+    <property>/systems/electrical/outputs/master-avionics</property>
+            </binding>
+        </hovered>
+    </animation>
+</PropertyList>
